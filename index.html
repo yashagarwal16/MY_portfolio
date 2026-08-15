@@ -1,893 +1,1048 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Yash Agarwal - AI Engineer</title>
-    <meta name="description" content="Portfolio of Yash Agarwal - AI Engineer, Data Scientist, and Full Stack Developer">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/jarvis.css">
-    
-    <!-- Meta tags for SEO -->
-    <meta name="keywords" content="AI Engineer, Data Science, Machine Learning, Portfolio, Yash Agarwal">
-    <meta name="author" content="Yash Agarwal">
-    <meta property="og:title" content="Portfolio - Yash Agarwal">
-    <meta property="og:description" content="AI-powered portfolio showcasing innovative projects in AI, ML, and web development">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Agarwal — Data Engineer</title>
+<meta name="description" content="Yash Agarwal — Entry-level Data Engineer building ETL pipelines and cloud data systems with Python, SQL, Azure and AWS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================= TOKENS ============================= */
+:root{
+  --bg:#0A0D12;
+  --bg-elev:#11151C;
+  --bg-elev-2:#161B24;
+  --paper:#ECEAE2;
+  --paper-line:#D9D6C9;
+  --ink:#ECE9E1;
+  --ink-dim:#8891A0;
+  --ink-faint:#4B5261;
+  --line:#212832;
+  --line-strong:#2C3542;
+  --amber:#E8A33D;
+  --teal:#3FA7A0;
+  --green:#5FBF77;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --rail-w:220px;
+  --edge:2px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit;}
+ul{list-style:none;}
+img,svg{display:block;max-width:100%;}
+::selection{background:var(--amber);color:#0A0D12;}
+
+/* focus states */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:3px;
+}
+
+.mono{font-family:var(--font-mono);}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow .tag{color:var(--amber);}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--ink-faint);}
+
+/* ============================= LAYOUT ============================= */
+.status-bar{
+  position:fixed;top:0;left:0;right:0;height:34px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  background:rgba(10,13,18,0.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  color:var(--ink-dim);
+  z-index:200;
+}
+.status-bar .dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:6px;
+  box-shadow:0 0 6px var(--green);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion:reduce){.status-bar .dot{animation:none;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.status-bar .status-right{display:flex;gap:22px;}
+.status-bar .status-right span b{color:var(--ink);font-weight:500;}
+
+.rail{
+  position:fixed;top:34px;left:0;bottom:0;width:var(--rail-w);
+  border-right:1px solid var(--line);
+  padding:36px 0 20px 28px;
+  display:flex;flex-direction:column;
+  z-index:150;
+}
+.rail-logo{
+  font-family:var(--font-display);font-weight:700;font-size:15px;
+  letter-spacing:0.02em;margin-bottom:46px;
+  display:flex;align-items:center;gap:10px;
+}
+.rail-logo .mark{
+  width:26px;height:26px;border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:10px;color:var(--amber);
+}
+.rail-nav{position:relative;flex:1;}
+.rail-nav::before{
+  content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;
+  background:var(--line-strong);
+}
+.rail-progress{
+  position:absolute;left:5px;top:6px;width:1px;height:0%;
+  background:linear-gradient(var(--amber),var(--teal));
+  transition:height .2s linear;
+}
+.rail-item{
+  position:relative;display:block;padding:9px 0 9px 22px;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.06em;
+  color:var(--ink-faint);transition:color .25s ease;
+}
+.rail-item .num{color:var(--ink-faint);margin-right:8px;}
+.rail-item::before{
+  content:'';position:absolute;left:1px;top:14px;width:9px;height:9px;
+  border-radius:50%;background:var(--bg);border:1px solid var(--line-strong);
+  transition:all .25s ease;
+}
+.rail-item:hover{color:var(--ink);}
+.rail-item.active{color:var(--ink);}
+.rail-item.active::before{
+  background:var(--amber);border-color:var(--amber);
+  box-shadow:0 0 8px rgba(232,163,61,0.6);
+}
+.rail-item.active .num{color:var(--amber);}
+.rail-foot{
+  padding-top:20px;font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);
+  letter-spacing:0.05em;
+}
+
+.term-toggle{
+  margin-top:18px;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);
+  border:1px solid var(--line);padding:8px 10px;width:fit-content;
+  transition:border-color .2s, color .2s;
+}
+.term-toggle:hover{border-color:var(--teal);color:var(--teal);}
+
+main{margin-left:var(--rail-w);padding-top:34px;}
+
+section{
+  padding:120px 64px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.section-inner{max-width:1120px;}
+.section-head{margin-bottom:56px;max-width:640px;}
+.section-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(28px,3.4vw,42px);
+  letter-spacing:-0.01em;margin-top:14px;line-height:1.15;
+}
+.section-title .accent{color:var(--amber);}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+/* ============================= HERO ============================= */
+#hero{
+  min-height:calc(100vh - 34px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding-top:80px;
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:56px;max-width:1180px;
+}
+.hero-kicker{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;
+  color:var(--teal);text-transform:uppercase;margin-bottom:22px;
+}
+.hero-title{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(34px,6vw,74px);line-height:1.03;letter-spacing:-0.02em;
+  max-width:920px;
+}
+.hero-title .line2{color:var(--ink-dim);}
+.hero-sub{
+  margin-top:26px;max-width:600px;color:var(--ink-dim);font-size:17px;line-height:1.7;
+}
+.hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+.btn{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:14px 24px;border:1px solid var(--line-strong);
+  display:inline-flex;align-items:center;gap:10px;transition:all .2s ease;
+}
+.btn-primary{background:var(--amber);color:#0A0D12;border-color:var(--amber);font-weight:600;}
+.btn-primary:hover{background:#f2b357;}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+/* pipeline diagram */
+.pipeline-wrap{margin-top:68px;}
+.pipeline-legend{
+  display:flex;gap:22px;margin-bottom:18px;font-family:var(--font-mono);
+  font-size:10.5px;color:var(--ink-faint);letter-spacing:0.06em;flex-wrap:wrap;
+}
+.pipeline-legend span{display:flex;align-items:center;gap:6px;}
+.legend-dot{width:7px;height:7px;border-radius:50%;}
+.pipeline{
+  display:flex;align-items:stretch;border:1px solid var(--line);
+  background:var(--bg-elev);position:relative;overflow-x:auto;
+}
+.pipeline::before{
+  content:'IN → OUT';position:absolute;top:-22px;right:0;
+  font-family:var(--font-mono);font-size:9.5px;color:var(--ink-faint);letter-spacing:0.1em;
+}
+.pnode{
+  flex:1;min-width:150px;padding:22px 18px;border-right:1px solid var(--line);
+  cursor:pointer;position:relative;transition:background .2s ease;
+}
+.pnode:last-child{border-right:none;}
+.pnode:hover,.pnode.active{background:var(--bg-elev-2);}
+.pnode .pn-idx{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);}
+.pnode .pn-label{
+  font-family:var(--font-display);font-weight:600;font-size:15px;margin-top:8px;
+}
+.pnode .pn-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-dim);margin-top:4px;}
+.pnode .pn-bar{position:absolute;left:0;bottom:0;height:2px;width:0%;transition:width .3s ease;}
+.pnode.active .pn-bar{width:100%;}
+.pnode[data-kind="source"] .pn-bar,.pnode[data-kind="ingest"] .pn-bar{background:var(--amber);}
+.pnode[data-kind="transform"] .pn-bar{background:var(--teal);}
+.pnode[data-kind="store"] .pn-bar,.pnode[data-kind="analytics"] .pn-bar{background:var(--green);}
+.pipeline-detail{
+  margin-top:0;border:1px solid var(--line);border-top:none;background:var(--bg-elev);
+  padding:20px 24px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-dim);
+  min-height:52px;display:flex;align-items:center;
+}
+.pipeline-detail b{color:var(--ink);font-weight:600;margin-right:8px;}
+@media (max-width:760px){
+  .pipeline{flex-direction:column;}
+  .pnode{border-right:none;border-bottom:1px solid var(--line);}
+  .pnode:last-child{border-bottom:none;}
+}
+
+.scroll-cue{
+  position:absolute;bottom:36px;left:64px;font-family:var(--font-mono);font-size:10px;
+  color:var(--ink-faint);letter-spacing:0.1em;display:flex;align-items:center;gap:8px;
+}
+.scroll-cue .line{width:1px;height:26px;background:var(--ink-faint);animation:cue 1.8s ease-in-out infinite;}
+@keyframes cue{0%,100%{opacity:.3;}50%{opacity:1;}}
+@media (prefers-reduced-motion:reduce){.scroll-cue .line{animation:none;}}
+
+/* ============================= ABOUT / SYSTEM ============================= */
+.system-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);
+}
+.system-cell{background:var(--bg);padding:32px;}
+.system-cell h3{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--teal);
+  text-transform:uppercase;margin-bottom:14px;
+}
+.system-cell p, .system-cell li{color:var(--ink-dim);font-size:14.5px;line-height:1.75;}
+.system-cell ul li{position:relative;padding-left:16px;margin-bottom:6px;}
+.system-cell ul li::before{content:'—';position:absolute;left:0;color:var(--ink-faint);}
+@media (max-width:700px){.system-grid{grid-template-columns:1fr;}}
+
+/* ============================= STACK / LAB ============================= */
+.stack-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start;}
+.stack-groups{display:flex;flex-direction:column;gap:28px;}
+.stack-group h4{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--ink-faint);
+  text-transform:uppercase;margin-bottom:12px;
+}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  font-family:var(--font-mono);font-size:12.5px;padding:9px 14px;
+  border:1px solid var(--line-strong);color:var(--ink-dim);transition:all .18s ease;
+}
+.chip:hover,.chip.active{color:var(--ink);border-color:var(--teal);background:var(--bg-elev);}
+.chip.exploring{color:var(--ink-faint);border-style:dashed;}
+.stack-panel{
+  border:1px solid var(--line);background:var(--bg-elev);padding:30px;min-height:280px;
+  position:sticky;top:70px;
+}
+.stack-panel .sp-empty{color:var(--ink-faint);font-family:var(--font-mono);font-size:12.5px;}
+.stack-panel .sp-title{font-family:var(--font-display);font-weight:600;font-size:22px;}
+.stack-panel .sp-tier{
+  display:inline-block;margin-top:8px;font-family:var(--font-mono);font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line-strong);
+}
+.stack-panel .sp-body{margin-top:18px;color:var(--ink-dim);font-size:14px;line-height:1.75;}
+.stack-panel .sp-evidence{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);}
+.stack-panel .sp-evidence span{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.1em;}
+.stack-panel .sp-evidence ul{margin-top:8px;}
+.stack-panel .sp-evidence li{font-size:13.5px;color:var(--ink-dim);padding:4px 0;position:relative;padding-left:14px;}
+.stack-panel .sp-evidence li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:11px;}
+@media (max-width:820px){.stack-layout{grid-template-columns:1fr;}.stack-panel{position:relative;top:0;}}
+
+/* ============================= LOG / EXPERIENCE ============================= */
+.log-entry{border:1px solid var(--line);margin-bottom:-1px;background:var(--bg);}
+.log-head{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 26px;cursor:pointer;
+}
+.log-head:hover{background:var(--bg-elev);}
+.log-id{font-family:var(--font-mono);font-size:11px;color:var(--amber);min-width:80px;}
+.log-titles{flex:1;}
+.log-role{font-family:var(--font-display);font-weight:600;font-size:18px;}
+.log-org{font-family:var(--font-mono);font-size:12px;color:var(--ink-dim);margin-top:4px;}
+.log-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.log-time{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);}
+.log-chevron{font-family:var(--font-mono);font-size:14px;color:var(--ink-faint);transition:transform .25s ease;}
+.log-entry.open .log-chevron{transform:rotate(45deg);color:var(--teal);}
+.log-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.log-entry.open .log-body{max-height:400px;}
+.log-body-inner{padding:0 26px 26px 26px;}
+.log-stack{font-family:var(--font-mono);font-size:11px;color:var(--teal);margin-bottom:14px;letter-spacing:0.03em;}
+.log-body-inner ul li{
+  position:relative;padding-left:18px;margin-bottom:10px;color:var(--ink-dim);font-size:14.5px;line-height:1.7;
+}
+.log-body-inner ul li::before{content:'—';position:absolute;left:0;color:var(--ink-faint);}
+
+/* ============================= PROJECTS ============================= */
+.project-case{border:1px solid var(--line);margin-bottom:64px;background:var(--bg-elev);}
+.project-case:last-child{margin-bottom:0;}
+.pc-head{padding:32px 32px 0 32px;}
+.pc-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.pc-title{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,2.6vw,30px);}
+.pc-stack{font-family:var(--font-mono);font-size:12px;color:var(--teal);margin-top:8px;}
+.pc-note{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);margin-top:10px;font-style:normal;}
+
+.pc-diagram{padding:28px 32px;}
+.pc-tabs{display:flex;border-top:1px solid var(--line);flex-wrap:wrap;}
+.pc-tab{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:16px 22px;color:var(--ink-faint);border-right:1px solid var(--line);
+  border-bottom:2px solid transparent;
+}
+.pc-tab:hover{color:var(--ink-dim);}
+.pc-tab.active{color:var(--ink);border-bottom-color:var(--amber);background:var(--bg-elev-2);}
+.pc-tab-panels{border-top:1px solid var(--line);padding:26px 32px 32px 32px;}
+.pc-tab-panel{display:none;color:var(--ink-dim);font-size:14.5px;line-height:1.8;}
+.pc-tab-panel.active{display:block;}
+.pc-tab-panel b{color:var(--ink);}
+.pc-metrics{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:0;flex-wrap:wrap;}
+.pc-metric{flex:1;min-width:140px;background:var(--bg-elev);padding:22px;}
+.pc-metric .m-val{font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--amber);}
+.pc-metric .m-label{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);margin-top:6px;letter-spacing:0.05em;}
+
+/* ============================= RECRUITER MODE ============================= */
+.recruiter-trigger{
+  border:1px solid var(--line-strong);padding:36px;display:flex;justify-content:space-between;
+  align-items:center;gap:24px;flex-wrap:wrap;background:var(--bg-elev);
+}
+.recruiter-trigger p{color:var(--ink-dim);max-width:480px;font-size:14.5px;}
+.rmodal-overlay{
+  position:fixed;inset:0;background:rgba(6,8,11,0.82);backdrop-filter:blur(3px);
+  z-index:500;display:none;align-items:center;justify-content:center;padding:24px;
+}
+.rmodal-overlay.open{display:flex;}
+.rmodal{
+  background:var(--paper);color:#171A1F;max-width:560px;width:100%;
+  border:1px solid var(--paper-line);max-height:86vh;overflow-y:auto;
+}
+.rmodal-head{
+  display:flex;justify-content:space-between;align-items:center;padding:22px 26px;
+  border-bottom:1px solid var(--paper-line);
+}
+.rmodal-head span{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6b7280;}
+.rmodal-close{font-family:var(--font-mono);font-size:18px;color:#6b7280;}
+.rmodal-body{padding:26px;}
+.rrow{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--paper-line);}
+.rrow:last-of-type{border-bottom:none;}
+.rrow .rk{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8f98;}
+.rrow .rv{font-size:14.5px;font-weight:500;}
+.rmodal-cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
+.rmodal-cta a{
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:12px 18px;border:1px solid #171A1F;color:#171A1F;
+}
+.rmodal-cta a.solid{background:#171A1F;color:var(--paper);}
+
+/* ============================= CONNECT ============================= */
+#connect{border-bottom:none;}
+.connect-title{
+  font-family:var(--font-display);font-weight:700;font-size:clamp(30px,5vw,58px);
+  line-height:1.08;max-width:760px;
+}
+.connect-links{display:flex;flex-wrap:wrap;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+.connect-link{
+  flex:1;min-width:220px;background:var(--bg);padding:26px 24px;transition:background .2s ease;
+}
+.connect-link:hover{background:var(--bg-elev);}
+.connect-link .cl-k{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:0.1em;text-transform:uppercase;}
+.connect-link .cl-v{font-family:var(--font-mono);font-size:14.5px;margin-top:8px;color:var(--teal);word-break:break-word;}
+
+footer{
+  padding:30px 64px;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);flex-wrap:wrap;gap:10px;
+}
+
+/* ============================= TERMINAL EASTER EGG ============================= */
+.term-overlay{
+  position:fixed;inset:0;background:rgba(6,8,11,0.86);z-index:600;display:none;
+  align-items:flex-start;justify-content:center;padding:8vh 20px;
+}
+.term-overlay.open{display:flex;}
+.term-win{
+  width:100%;max-width:620px;background:#0D1117;border:1px solid var(--line-strong);
+  font-family:var(--font-mono);font-size:13px;
+}
+.term-bar{
+  display:flex;justify-content:space-between;align-items:center;padding:10px 14px;
+  border-bottom:1px solid var(--line);color:var(--ink-faint);font-size:10.5px;letter-spacing:0.08em;
+}
+.term-body{padding:18px 16px;min-height:220px;color:var(--green);}
+.term-body .prompt{color:var(--ink-dim);}
+.term-body p{margin-bottom:6px;white-space:pre-wrap;}
+.term-input-row{display:flex;align-items:center;padding:0 16px 16px 16px;gap:8px;}
+.term-input-row .prompt{color:var(--ink-dim);}
+.term-input{
+  background:none;border:none;color:var(--ink);font-family:var(--font-mono);font-size:13px;
+  flex:1;outline:none;
+}
+
+/* ============================= MOBILE ============================= */
+@media (max-width:960px){
+  .rail{display:none;}
+  main{margin-left:0;}
+  section{padding:80px 24px;}
+  .status-bar{padding:0 14px;}
+  .status-bar .hide-sm{display:none;}
+  .stack-layout{gap:32px;}
+  .scroll-cue{left:24px;}
+}
+@media (max-width:960px){
+  .mobile-nav{
+    position:fixed;top:34px;left:0;right:0;z-index:150;display:flex;overflow-x:auto;
+    background:rgba(10,13,18,0.95);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);
+  }
+  .mobile-nav a{
+    font-family:var(--font-mono);font-size:10.5px;padding:12px 16px;color:var(--ink-faint);
+    white-space:nowrap;letter-spacing:0.06em;border-bottom:2px solid transparent;
+  }
+  .mobile-nav a.active{color:var(--ink);border-bottom-color:var(--amber);}
+  main{padding-top:44px;}
+}
+.mobile-nav{display:none;}
+@media (max-width:960px){.mobile-nav{display:flex;}}
+</style>
 </head>
 <body>
-    <!-- Matrix Background -->
-    <div class="matrix-bg"></div>
-    
-    <!-- Holographic Grid -->
-    <div class="holo-grid"></div>
-    
-    <!-- Scan Lines -->
-    <div class="scan-lines"></div>
-    
-    <!-- Particles -->
-    <div class="particles"></div>
 
-    <!-- JARVIS Loading Screen -->
-    <div class="jarvis-loading" id="loadingScreen">
-        <div class="loading-content">
-            <div class="jarvis-logo"></div>
-            <div class="loading-text">Initializing ...</div>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
-            </div>
+<div class="status-bar">
+  <div><span class="dot"></span><span class="mono">SYSTEM ONLINE</span></div>
+  <div class="status-right">
+    <span class="hide-sm">FOCUS <b>DATA ENGINEERING</b></span>
+    <span class="hide-sm">LOCATION <b>JAIPUR, IN</b></span>
+    <span>OPEN TO <b>ENTRY-LEVEL ROLES</b></span>
+  </div>
+</div>
+
+<nav class="rail" aria-label="Section navigation">
+  <div class="rail-logo"><span class="mark">YA</span> YASH AGARWAL</div>
+  <div class="rail-nav">
+    <div class="rail-progress" id="railProgress"></div>
+    <a href="#hero" class="rail-item" data-target="hero"><span class="num">01</span>IDENTITY</a>
+    <a href="#system" class="rail-item" data-target="system"><span class="num">02</span>SYSTEM</a>
+    <a href="#stack" class="rail-item" data-target="stack"><span class="num">03</span>STACK</a>
+    <a href="#log" class="rail-item" data-target="log"><span class="num">04</span>LOG</a>
+    <a href="#projects" class="rail-item" data-target="projects"><span class="num">05</span>PROJECTS</a>
+    <a href="#recruiter" class="rail-item" data-target="recruiter"><span class="num">06</span>RECRUITER</a>
+    <a href="#connect" class="rail-item" data-target="connect"><span class="num">07</span>CONNECT</a>
+  </div>
+  <button class="term-toggle" id="termOpenBtn" aria-haspopup="dialog">
+    <span>&gt;_</span> terminal
+  </button>
+  <div class="rail-foot">v1.0 · built by Yash</div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#hero" data-target="hero">01 IDENTITY</a>
+  <a href="#system" data-target="system">02 SYSTEM</a>
+  <a href="#stack" data-target="stack">03 STACK</a>
+  <a href="#log" data-target="log">04 LOG</a>
+  <a href="#projects" data-target="projects">05 PROJECTS</a>
+  <a href="#recruiter" data-target="recruiter">06 RECRUITER</a>
+  <a href="#connect" data-target="connect">07 CONNECT</a>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="section-inner hero-grid">
+      <div>
+        <div class="hero-kicker">Entry-Level Data Engineer · Cloud, ETL &amp; Big Data Systems</div>
+        <h1 class="hero-title">
+          I build systems that turn<br>
+          <span class="line2">raw data into something useful.</span>
+        </h1>
+        <p class="hero-sub">
+          B.Tech in Artificial Intelligence &amp; Data Science. I design ETL pipelines and cloud data
+          workflows with Python, SQL, and Azure — from ingestion through transformation to
+          warehousing and reporting. Currently looking for my first full-time role in data engineering.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">Explore My Systems →</a>
+          <a href="#recruiter" class="btn btn-ghost">Recruiter View</a>
+          <a href="resume.pdf" class="btn btn-ghost">Resume ↓</a>
         </div>
-    </div>
+      </div>
 
-    <!-- JARVIS Interface -->
-    <div class="jarvis-interface">
-        <!-- Navigation -->
-        <nav class="jarvis-nav" id="navbar">
-            <div class="nav-container">
-                <a href="#home" class="nav-brand">
-                    Y.A.S.H 🤖
-                </a>
-                
-                <div class="nav-menu" id="navMenu">
-                    <a href="#home" class="nav-link active">
-                        <span>HOME</span>
-                    </a>
-                    <a href="#about" class="nav-link">
-                        <span>ABOUT</span>
-                    </a>
-                    <a href="#skills" class="nav-link">
-                        <span>SKILLS</span>
-                    </a>
-                    <a href="#projects" class="nav-link">
-                        <span>PROJECTS</span>
-                    </a>
-                    <a href="#contact" class="nav-link">
-                        <span>CONTACT</span>
-                    </a>
-                </div>
-                
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-             <br><br><br><br><br><br>
-        <section id="home" class="hero jarvis-section">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="hero-greeting">
-                        SYSTEM ONLINE
-                    </div>
-                    <h1 class="hero-title">
-                        YASH AGARWAL
-                    </h1>
-                    <h2 class="hero-subtitle">
-                        <span class="typing-text">AI Engineer</span>
-                    </h2>
-                    <p class="hero-description">
-                        Advanced AI systems engineer specializing in machine learning, 
-                        neural networks, and intelligent automation. Transforming complex 
-                        algorithms into revolutionary applications.
-                    </p>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="30">0</span>
-                            <span class="stat-label">PROJECTS</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="20">0</span>
-                            <span class="stat-label">CERTIFICATES</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="52">0</span>
-                            <span class="stat-label">SKILLS</span>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-actions">
-                        <a href="#projects" class="jarvis-btn primary">
-                            <span>VIEW PROJECTS</span>
-                            <i class="fas fa-rocket"></i>
-                        </a>
-                        <a href="#contact" class="jarvis-btn">
-                            <span>INITIATE CONTACT</span>
-                            <i class="fas fa-satellite-dish"></i>
-                        </a>
-                        <a href="Port/Yash_Agarwal_Resume_ATS.docx" class="jarvis-btn" download>
-                            <span>DOWNLOAD DATA</span>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="hero-visual">
-                    <div class="jarvis-avatar">
-                        <div class="avatar-container">
-                            <div class="avatar-placeholder">
-                                <i class="fas fa-user-astronaut"></i>
-                            </div>
-                            <div class="avatar-overlay"></div>
-                        </div>
-                        <div class="holo-rings">
-                            <div class="holo-ring"></div>
-                            <div class="holo-ring"></div>
-                            <div class="holo-ring"></div>
-                        </div>
-                        <div class="floating-data">CPU: 98%</div>
-                        <div class="floating-data">MEM: 85%</div>
-                        <div class="floating-data">NET: OPTIMAL</div>
-                        <div class="floating-data">AI: ACTIVE</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about jarvis-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-tag">SYSTEM ANALYSIS</span>
-                    <h2 class="section-title">ABOUT PROTOCOL</h2>
-                    <p class="section-subtitle">
-                        Comprehensive analysis of capabilities and operational parameters
-                    </p>
-                </div>
-                
-                <div class="about-grid">
-                    <div class="about-content">
-                        <div class="about-panel">
-                            <h3>CORE DIRECTIVE</h3>
-                            <p>
-                                Primary mission: Develop intelligent systems that enhance human capabilities 
-                                through advanced AI and machine learning technologies. Specializing in 
-                                neural network architectures, data science, and autonomous system design.
-                            </p>
-                        </div>
-                        
-                        <div class="about-panel">
-                            <h3>OPERATIONAL STATUS</h3>
-                            <div class="data-points">
-                                <div class="data-point">
-                                    <div class="data-icon">
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                    <div class="data-info">
-                                        <div class="data-label">IDENTITY</div>
-                                        <div class="data-value">Yash Agarwal</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="data-point">
-                                    <div class="data-icon">
-                                        <i class="fas fa-calendar"></i>
-                                    </div>
-                                    <div class="data-info">
-                                        <div class="data-label">BIRTH DATE</div>
-                                        <div class="data-value">Oct 16, 2005</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="data-point">
-                                    <div class="data-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="data-info">
-                                        <div class="data-label">LOCATION</div>
-                                        <div class="data-value">Jaipur, India</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="data-point">
-                                    <div class="data-icon">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="data-info">
-                                        <div class="data-label">EDUCATION</div>
-                                        <div class="data-value">BTech AI & DS</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="terminal">
-                            <div class="terminal-header">
-                                <div class="terminal-dot"></div>
-                                <div class="terminal-dot"></div>
-                                <div class="terminal-dot"></div>
-                                <span>Terminal v2.0</span>
-                            </div>
-                            <div class="terminal-content">
-                                <div><span class="terminal-prompt">yash-agarwal-632418259@portfolio:~$</span> <span class="terminal-command">whoami</span></div>
-                                <div>AI Engineer & Data Scientist</div>
-                                <div><span class="terminal-prompt">yash-agarwal-632418259@portfolio:~$</span> <span class="terminal-command">status</span></div>
-                                <div>All systems operational</div>
-                                <div><span class="terminal-prompt">yash-agarwal-632418259@portfolio:~$</span> <span class="terminal-command">mission</span></div>
-                                <div>Advancing AI for humanity</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-visual">
-                        <div class="holo-display">
-                            <h3 class="holo-text">CURRENT OBJECTIVES</h3>
-                            <div class="energy-bar">
-                                <div class="energy-fill"></div>
-                            </div>
-                            
-                            <div class="data-viz">
-                                <span>AI Development</span>
-                                <div class="data-bar">
-                                    <div class="data-fill" style="width: 95%;"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="data-viz">
-                                <span>Machine Learning</span>
-                                <div class="data-bar">
-                                    <div class="data-fill" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="data-viz">
-                                <span>Cloud Computing</span>
-                                <div class="data-bar">
-                                    <div class="data-fill" style="width: 85%;"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="data-viz">
-                                <span>DevOps</span>
-                                <div class="data-bar">
-                                    <div class="data-fill" style="width: 88%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills jarvis-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-tag">CAPABILITY MATRIX</span>
-                    <h2 class="section-title">TECHNICAL ARSENAL</h2>
-                    <p class="section-subtitle">
-                        Advanced technological capabilities and operational proficiencies
-                    </p>
-                </div>
-                
-                <div class="skills-grid">
-                    <div class="skill-panel">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>AI & MACHINE LEARNING</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Python</span>
-                                    <span class="skill-level">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="95"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">TensorFlow</span>
-                                    <span class="skill-level">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">PyTorch</span>
-                                    <span class="skill-level">80%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="80"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Scikit-learn</span>
-                                    <span class="skill-level">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="90"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-panel">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>DEVELOPMENT STACK</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">JavaScript</span>
-                                    <span class="skill-level">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="90"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">React</span>
-                                    <span class="skill-level">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Flask</span>
-                                    <span class="skill-level">88%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="88"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Node.js</span>
-                                    <span class="skill-level">75%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="75"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-panel">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <h3>CLOUD & DEVOPS</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">AWS</span>
-                                    <span class="skill-level">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Docker</span>
-                                    <span class="skill-level">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="90"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Kubernetes</span>
-                                    <span class="skill-level">75%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="75"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">CI/CD</span>
-                                    <span class="skill-level">80%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="80"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-panel">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3>DATA SYSTEMS</h3>
-                        </div>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">MySQL</span>
-                                    <span class="skill-level">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">MongoDB</span>
-                                    <span class="skill-level">80%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="80"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">PostgreSQL</span>
-                                    <span class="skill-level">75%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="75"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span class="skill-name">Redis</span>
-                                    <span class="skill-level">70%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="70"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects jarvis-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-tag">PROJECT DATABASE</span>
-                    <h2 class="section-title">MISSION ARCHIVES</h2>
-                    <p class="section-subtitle">
-                        Classified projects and technological innovations
-                    </p>
-                </div>
-                
-                <div class="projects-filter">
-                    <button class="filter-btn " data-filter="all">ALL PROJECTS</button>
-                    <button class="filter-btn" data-filter="web">WEB SYSTEMS</button>
-                    <button class="filter-btn" data-filter="ai">AI MODULES</button>
-                    <button class="filter-btn" data-filter="devops">DEVOPS TOOLS</button>
-                    <button class="filter-btn" data-filter="aws">CLOUD SYSTEMS</button>
-                </div>
-                
-                <div class="projects-grid">
-                    <!-- Featured Project - ManasMitra -->
-                    <div class="project-card" data-category="ai">
-                        <div class="project-image">
-                            <div class="project-placeholder ai-project">
-                                <i class="fas fa-brain"></i>
-                                <span>AI PLATFORM</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://interviewace-7al4.onrender.com/">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Interview ACE</h3>
-                            <p class="project-description">
-                              Interview Ace is an AI-powered mock interview platform that helps users practice, improve communication, and receive instant feedback.
-                                It simulates real interview scenarios using NLP to boost confidence and performance.                            </p>
-                            <div class="project-tags">
-                                <span class="tag">AI</span>
-                                <span class="tag">NEURAL NETWORKS</span>
-                                <span class="tag">Gemini</span>
-                                <span class="tag">Quick Interview</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Web Development Projects -->
-                    <div class="project-card" data-category="web">
-                        <div class="project-image">
-                            <div class="project-placeholder web-project">
-                                <i class="fas fa-window-maximize"></i>
-                                <span>INTERACTIVE UI</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="Port/Menu/HTMLTasks/draggable.html" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">INTERACTIVE WINDOW SYSTEM</h3>
-                            <p class="project-description">
-                                Advanced window management interface with drag, resize, and multi-state functionality.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">JAVASCRIPT</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">INTERACTIVE</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card" data-category="web">
-                        <div class="project-image">
-                            <div class="project-placeholder web-project">
-                                <i class="fas fa-code"></i>
-                                <span>LIVE EDITOR</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="Port/Menu/html_live_interpreter.html" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">LIVE CODE INTERPRETER</h3>
-                            <p class="project-description">
-                                Real-time HTML/CSS/JS interpreter with live preview and syntax highlighting.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">REAL-TIME</span>
-                                <span class="tag">COMPILER</span>
-                                <span class="tag">EDITOR</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- DevOps Projects -->
-                    <div class="project-card" data-category="devops">
-                        <div class="project-image">
-                            <div class="project-placeholder devops-project">
-                                <i class="fab fa-docker"></i>
-                                <span>CONTAINERS</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="Port/Menu/docker.html" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">CONTAINER ORCHESTRATION</h3>
-                            <p class="project-description">
-                                Advanced Docker management system with monitoring and automated deployment.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">DOCKER</span>
-                                <span class="tag">ORCHESTRATION</span>
-                                <span class="tag">MONITORING</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- AWS Projects -->
-                    <div class="project-card" data-category="aws">
-                        <div class="project-image">
-                            <div class="project-placeholder aws-project">
-                                <i class="fab fa-aws"></i>
-                                <span>CLOUD CONTROL</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="Port/Menu/AWSfiles/boto3.html" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">AWS COMMAND CENTER</h3>
-                            <p class="project-description">
-                                Comprehensive AWS infrastructure management with automated scaling and monitoring.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">AWS</span>
-                                <span class="tag">BOTO3</span>
-                                <span class="tag">AUTOMATION</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card" data-category="ai">
-                        <div class="project-image">
-                            <div class="project-placeholder ai-project">
-                                <i class="fas fa-robot"></i>
-                                <span>TEXT AI</span>
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="Port/Menu/gemini.html" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">AI TEXT SYNTHESIS</h3>
-                            <p class="project-description">
-                                Advanced natural language processing system for intelligent text generation.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">NLP</span>
-                                <span class="tag">AI</span>
-                                <span class="tag">TEXT GENERATION</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projects-cta" style="text-align: center; margin-top: 3rem;">
-                    <a href="projec.html" class="jarvis-btn primary">
-                        <span>ACCESS FULL DATABASE</span>
-                        <i class="fas fa-database"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact jarvis-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-tag">COMMUNICATION PROTOCOL</span>
-                    <h2 class="section-title">ESTABLISH CONNECTION</h2>
-                    <p class="section-subtitle">
-                        Initiate secure communication channel for collaboration
-                    </p>
-                </div>
-                
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>COORDINATES</h4>
-                                <p>Murlipura, Jaipur<br>Rajasthan, India 302039</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-satellite-dish"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>COMMUNICATION LINK</h4>
-                                <p>+91 8003664759</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>DATA TRANSMISSION</h4>
-                                <p>yashagarwala2709@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>NETWORK ACCESS</h4>
-                                <p>ManasMitra.site</p>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/yash-agarwal-632418259/" class="social-link" target="_blank">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/yashagarwal16" class="social-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.instagram.com/yash_agr2005?igsh=MWZhZGltZzZxMjhnZA==" class="social-link" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <form id="contactForm" class="jarvis-contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">IDENTITY</label>
-                                    <input type="text" name="name" class="form-input" placeholder="Enter your name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">TRANSMISSION ID</label>
-                                    <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">MESSAGE HEADER</label>
-                                <input type="text" name="subject" class="form-input" placeholder="Enter subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">DATA PAYLOAD</label>
-                                <textarea name="message" class="form-input" rows="6" placeholder="Enter your message" required></textarea>
-                            </div>
-                            <button type="submit" class="jarvis-btn primary" id="submitBtn">
-                                <span class="loading-spinner" id="contactSpinner" style="display: none;"></span>
-                                <span>TRANSMIT MESSAGE</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                            
-                            <!-- Status Messages -->
-                            <div class="form-status" id="formStatus" style="display: none;"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2024 YASH AGARWAL - AI SYSTEMS ENGINEER</p>
-                    <p>POWERED BY YASH AGARWAL </p>
-                </div>
-                
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/yash-agarwal-632418259/" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/yashagarwal16" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.instagram.com/yash_agr2005?igsh=MWZhZGltZzZxMjhnZA==" class="social-link" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                
-                <div class="copyright">
-                    <p>ALL RIGHTS RESERVED | PROTOCOL ACTIVE</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Voice Recognition Indicator -->
-    <div class="voice-indicator" title="Voice Commands">
-        <i class="fas fa-microphone"></i>
-    </div>
-
-    <!-- AI Assistant Panel -->
-    <div class="ai-assistant">
-        <div class="ai-header">
-            <div class="ai-avatar">--</div>
-            <div class="ai-status">
-                <div class="ai-name">YASH</div>
-                <div class="ai-state">ONLINE</div>
-            </div>
+      <div class="pipeline-wrap reveal" id="heroPipelineWrap">
+        <div class="pipeline-legend">
+          <span><i class="legend-dot" style="background:var(--amber)"></i>input</span>
+          <span><i class="legend-dot" style="background:var(--teal)"></i>process</span>
+          <span><i class="legend-dot" style="background:var(--green)"></i>output</span>
         </div>
-        <div class="ai-message">
-            Ready to assist with navigation and information.
-        </div>
+        <div class="pipeline" id="heroPipeline"></div>
+        <div class="pipeline-detail" id="heroPipelineDetail">Click a stage to see how I work with it →</div>
+      </div>
     </div>
+    <div class="scroll-cue"><span class="line"></span>SCROLL</div>
+  </section>
 
-    <!-- Scripts -->
-    <script src="js/jarvis.js"></script>
-    <script>
-        // Check authentication status on page load
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const response = await fetch('/api/auth/verify');
-                if (!response.ok) {
-                    window.location.href = '/signin.html';
-                }
-            } catch (error) {
-                console.error('Auth check failed:', error);
-                window.location.href = '/signin.html';
-            }
-        });
-        
-        // Add logout functionality
-        function logout() {
-            fetch('/api/auth/logout', { method: 'POST' })
-                .then(() => {
-                    window.location.href = '/signin.html';
-                })
-                .catch(error => {
-                    console.error('Logout error:', error);
-                    window.location.href = '/signin.html';
-                });
-        }
-        
-        // Add logout button to navigation
-        document.addEventListener('DOMContentLoaded', () => {
-            const navMenu = document.querySelector('.nav-menu');
-            if (navMenu) {
-                const logoutBtn = document.createElement('button');
-                logoutBtn.className = 'nav-link logout-btn';
-                logoutBtn.innerHTML = '<span>LOGOUT</span>';
-                logoutBtn.onclick = logout;
-                logoutBtn.style.cssText = `
-                    background: none;
-                    border: 1px solid var(--jarvis-red);
-                    color: var(--jarvis-red);
-                    padding: 0.5rem 1rem;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                `;
-                logoutBtn.onmouseover = () => {
-                    logoutBtn.style.background = 'var(--jarvis-red)';
-                    logoutBtn.style.color = 'white';
-                };
-                logoutBtn.onmouseout = () => {
-                    logoutBtn.style.background = 'none';
-                    logoutBtn.style.color = 'var(--jarvis-red)';
-                };
-                navMenu.appendChild(logoutBtn);
-            }
-        });
-    </script>
+  <!-- ============ SYSTEM / ABOUT ============ -->
+  <section id="system">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="tag">02</span>SYSTEM OVERVIEW</div>
+        <h2 class="section-title">How I'm put together.</h2>
+      </div>
+      <div class="system-grid reveal">
+        <div class="system-cell">
+          <h3>Who I Am</h3>
+          <p>B.Tech graduate in Artificial Intelligence &amp; Data Science (CGPA 8.3/10.0), Rajasthan Technical University. Three internships in, still early — and building toward data engineering deliberately rather than by accident.</p>
+        </div>
+        <div class="system-cell">
+          <h3>What I Build</h3>
+          <ul>
+            <li>ETL pipelines that move and validate data reliably</li>
+            <li>Cloud data workflows on Azure and AWS</li>
+            <li>Data warehouses with sensible schema design</li>
+            <li>Small tools that teach me how bigger systems work</li>
+          </ul>
+        </div>
+        <div class="system-cell">
+          <h3>What I Care About</h3>
+          <ul>
+            <li>Pipelines that fail loudly, not silently</li>
+            <li>Clean, readable data architecture</li>
+            <li>Automating the parts humans shouldn't repeat</li>
+            <li>Understanding a tool before I trust it</li>
+          </ul>
+        </div>
+        <div class="system-cell">
+          <h3>Where I'm Going</h3>
+          <p>Toward cloud data platform engineering — building the infrastructure that lets analysts, ML teams, and products trust the data underneath them. Azure is my strongest cloud today; I'm broadening into distributed processing and orchestration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STACK / LAB ============ -->
+  <section id="stack">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="tag">03</span>DATA ENGINEERING LAB</div>
+        <h2 class="section-title">Select a system to inspect it.</h2>
+      </div>
+      <div class="stack-layout reveal">
+        <div class="stack-groups" id="stackGroups"></div>
+        <div class="stack-panel" id="stackPanel">
+          <p class="sp-empty">← Select a technology to see where and how I've actually used it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOG / EXPERIENCE ============ -->
+  <section id="log">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="tag">04</span>ENGINEERING LOG</div>
+        <h2 class="section-title">Three internships, in order.</h2>
+      </div>
+      <div id="logList" class="reveal"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="tag">05</span>SYSTEMS I'VE SHIPPED</div>
+        <h2 class="section-title">Three case studies, not three cards.</h2>
+      </div>
+      <div id="projectsList"></div>
+    </div>
+  </section>
+
+  <!-- ============ RECRUITER MODE ============ -->
+  <section id="recruiter">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="tag">06</span>RECRUITER MODE</div>
+        <h2 class="section-title">Short on time? Get the summary.</h2>
+      </div>
+      <div class="recruiter-trigger reveal">
+        <p>One panel with role, stack, education, experience, and a resume download — no scrolling required.</p>
+        <button class="btn btn-primary" id="openRecruiter">Open Recruiter View →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONNECT ============ -->
+  <section id="connect">
+    <div class="section-inner">
+      <div class="section-head reveal" style="max-width:100%;">
+        <div class="eyebrow"><span class="tag">07</span>CONNECT</div>
+        <h2 class="connect-title">Let's build something useful.</h2>
+      </div>
+      <div class="connect-links reveal">
+        <a class="connect-link" href="mailto:yashagarwala2709@gmail.com">
+          <div class="cl-k">Email</div><div class="cl-v">yashagarwala2709@gmail.com</div>
+        </a>
+        <a class="connect-link" href="https://linkedin.com/in/yashagarwal-ai" target="_blank" rel="noopener">
+          <div class="cl-k">LinkedIn</div><div class="cl-v">linkedin.com/in/yashagarwal-ai</div>
+        </a>
+        <a class="connect-link" href="https://github.com/yashagarwal16" target="_blank" rel="noopener">
+          <div class="cl-k">GitHub</div><div class="cl-v">github.com/yashagarwal16</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 YASH AGARWAL — SYSTEM BUILT WITH INTENT</span>
+    <span>PRESS <span class="mono" style="color:var(--ink-dim)">`</span> FOR TERMINAL</span>
+  </footer>
+</main>
+
+<!-- Recruiter Modal -->
+<div class="rmodal-overlay" id="recruiterModal" role="dialog" aria-modal="true" aria-label="Recruiter summary">
+  <div class="rmodal">
+    <div class="rmodal-head">
+      <span>Recruiter View</span>
+      <button class="rmodal-close" id="closeRecruiter" aria-label="Close">✕</button>
+    </div>
+    <div class="rmodal-body">
+      <div class="rrow"><div class="rk">Role</div><div class="rv">Entry-Level Data Engineer</div></div>
+      <div class="rrow"><div class="rk">Core Stack</div><div class="rv">Python · SQL · PySpark · Azure · AWS</div></div>
+      <div class="rrow"><div class="rk">Education</div><div class="rv">B.Tech, AI &amp; Data Science — CGPA 8.3/10.0, Rajasthan Technical University (2022–2026)</div></div>
+      <div class="rrow"><div class="rk">Experience</div><div class="rv">3 internships — Python/ETL, AI &amp; Cloud, Backend &amp; Cloud</div></div>
+      <div class="rrow"><div class="rk">Flagship Project</div><div class="rv">Azure Data Lakehouse — Bronze/Silver/Gold, ADF + Databricks + Synapse</div></div>
+      <div class="rrow"><div class="rk">Location</div><div class="rv">Jaipur, Rajasthan, India</div></div>
+      <div class="rmodal-cta">
+        <a href="resume.pdf" class="solid">Download Resume</a>
+        <a href="mailto:yashagarwala2709@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/yashagarwal-ai" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Terminal Easter Egg -->
+<div class="term-overlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Terminal">
+  <div class="term-win">
+    <div class="term-bar"><span>yash@portfolio:~</span><span>ESC or ` to close</span></div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-input-row">
+      <span class="prompt">$</span>
+      <input class="term-input" id="termInput" type="text" autocomplete="off" spellcheck="false" placeholder="try: help">
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============================= CONTENT DATA ============================= */
+const HERO_PIPELINE = [
+  {kind:'source', idx:'01', label:'SOURCE', sub:'on-prem / raw', detail:'Business datasets living in on-premise systems and flat sources before they enter any pipeline.'},
+  {kind:'ingest', idx:'02', label:'INGEST', sub:'Azure Data Factory', detail:'Azure Data Factory orchestrates scheduled ingestion and moves raw data into cloud storage.'},
+  {kind:'transform', idx:'03', label:'TRANSFORM', sub:'Databricks · PySpark', detail:'PySpark jobs in Databricks clean, join, and reshape data — this is where most of the engineering happens.'},
+  {kind:'store', idx:'04', label:'STORE', sub:'ADLS Gen2 · SQL', detail:'Transformed data lands in ADLS Gen2 or a SQL Server warehouse, structured for querying.'},
+  {kind:'analytics', idx:'05', label:'ANALYZE', sub:'Synapse Analytics', detail:'Synapse Analytics and SQL queries turn stored data into something a report or a person can use.'},
+];
+
+const STACK = [
+  {group:'Core', tier:'core', items:[
+    {id:'python', label:'Python', tier:'Core', body:'My primary language for ETL scripting, data manipulation, and backend development.', evidence:['Reusable ETL utility scripts — L.R. Tech Solutions','Flask REST APIs — LinuxWorld internship','Hermes job scheduler — personal project']},
+    {id:'sql', label:'SQL', tier:'Core', body:'Used daily for querying, reporting logic, and schema design.', evidence:['Analytics reporting queries — L.R. Tech Solutions','Star-schema warehouse design — SQL Data Warehouse project']},
+    {id:'pyspark', label:'PySpark', tier:'Core', body:'Apache Spark via PySpark, used for distributed transformation inside Databricks.', evidence:['Silver-layer transformation — Cloud Data Lakehouse project']},
+  ]},
+  {group:'Cloud', tier:'core', items:[
+    {id:'azure', label:'Azure', tier:'Core', body:'My primary cloud platform: Data Factory, Databricks, Synapse Analytics, and ADLS Gen2.', evidence:['On-prem → Azure migration — L.R. Tech Solutions','Bronze/Silver/Gold lakehouse — flagship project']},
+    {id:'aws', label:'AWS', tier:'Supporting', body:'Hands-on with S3 and EC2; basic exposure to Lambda for serverless functions.', evidence:['Flask API deployment on EC2 — LinuxWorld internship']},
+  ]},
+  {group:'Data', tier:'core', items:[
+    {id:'etl', label:'ETL / ELT', tier:'Core', body:'Extract-transform-load is the throughline across every internship and project I have done.', evidence:['Daily ingestion scripts — L.R. Tech Solutions','Bronze/Silver/Gold pipeline — Cloud Data Lakehouse']},
+    {id:'warehouse', label:'Data Warehousing', tier:'Core', body:'Star-schema design, indexing, and query optimization on SQL Server.', evidence:['10,000+ record warehouse, 45% faster queries — SQL Data Warehouse project']},
+  ]},
+  {group:'Engineering', tier:'supporting', items:[
+    {id:'docker', label:'Docker', tier:'Supporting', body:'Containerized a data pipeline to standardize environment setup.', evidence:['70% faster environment setup — SQL Data Warehouse project']},
+    {id:'git', label:'Git', tier:'Supporting', body:'Version control across all internships and personal projects.', evidence:['Used across every project in this portfolio']},
+    {id:'restapi', label:'REST APIs', tier:'Supporting', body:'Built and deployed APIs with Flask.', evidence:['Flask APIs on AWS EC2 — LinuxWorld internship']},
+  ]},
+  {group:'Exploring', tier:'exploring', items:[
+    {id:'airflow', label:'Apache Airflow', tier:'Exploring', body:'Studying orchestration concepts — DAGs, dependencies, scheduling — largely through building Hermes.', evidence:['Hermes — a lightweight scheduler built to understand the core ideas behind Airflow']},
+    {id:'hive', label:'Apache Hive', tier:'Exploring', body:'Basic exposure as part of broader big-data / warehousing study.', evidence:['Self-study alongside cloud data warehousing work']},
+    {id:'lambda', label:'AWS Lambda', tier:'Exploring', body:'Basic hands-on exposure to serverless functions.', evidence:['Serverless exposure — LinuxWorld internship']},
+  ]},
+];
+
+const LOG = [
+  {id:'A', role:'Python Developer Intern', org:'L.R. Tech Solutions', time:'Oct 2025 – Present', stack:'STACK: Python · SQL · Azure', bullets:[
+    'Migrate and validate business datasets from on-premise systems to Azure cloud storage, running automated post-migration data integrity checks to catch mismatches before they reach production.',
+    'Develop reusable Python ETL utility scripts for daily data ingestion and write SQL queries to support internal analytics reporting.'
+  ]},
+  {id:'B', role:'AI & Cloud Technologies Intern', org:'Edunet Foundation (IBM SkillsBuild)', time:'Jul 2025 – Aug 2025', stack:'STACK: IBM Cloud Lite · IBM Granite · RAG', bullets:[
+    'Developed cloud automation workflows and AI agents using IBM Cloud Lite Services and IBM Granite foundation models.',
+    'Implemented a Retrieval-Augmented Generation (RAG) pipeline for context-aware data retrieval, combining vector search with model outputs.'
+  ]},
+  {id:'C', role:'Backend & Cloud Internship Trainee', org:'LinuxWorld Informatics Pvt Ltd', time:'Jul 2024 – Aug 2024', stack:'STACK: Python (Flask) · AWS EC2 · Lambda', bullets:[
+    'Developed RESTful APIs in Python (Flask) and deployed them on AWS EC2, with basic hands-on exposure to AWS Lambda for serverless functions.'
+  ]},
+];
+
+const PROJECTS = [
+  {
+    id:'lakehouse', flag:true,
+    title:'Cloud Data Lakehouse — Medallion Architecture',
+    stack:'Azure Data Factory · Azure Databricks (PySpark) · Synapse Analytics',
+    note:null,
+    diagram:[
+      {kind:'source', idx:'01', label:'RAW DATA', sub:'source files', detail:'Unprocessed source data, the starting point of the pipeline.'},
+      {kind:'ingest', idx:'02', label:'ADF', sub:'ingestion', detail:'Azure Data Factory pulls raw data into cloud storage on a schedule.'},
+      {kind:'ingest', idx:'03', label:'BRONZE', sub:'raw layer', detail:'Landing zone — data stored as-is, unmodified, for traceability.'},
+      {kind:'transform', idx:'04', label:'DATABRICKS', sub:'PySpark', detail:'PySpark jobs clean, deduplicate, and reshape the bronze data.'},
+      {kind:'transform', idx:'05', label:'SILVER', sub:'cleaned layer', detail:'Validated, structured data — ready for business logic to be applied.'},
+      {kind:'store', idx:'06', label:'GOLD', sub:'curated layer', detail:'Aggregated, business-ready tables built on top of the silver layer.'},
+      {kind:'analytics', idx:'07', label:'SYNAPSE', sub:'reporting', detail:'Azure Synapse Analytics exposes the gold layer for reporting and queries.'},
+    ],
+    tabs:{
+      problem:'On-premise and raw cloud data has no structure that reporting tools can trust directly. This project explores how to move raw data through progressively cleaner layers so each stage of the business can trust the layer it depends on.',
+      architecture:'A medallion (Bronze / Silver / Gold) architecture on Azure: Data Factory handles ingestion and orchestration, Databricks handles distributed transformation via PySpark, and Synapse Analytics sits on top for reporting.',
+      decisions:'<b>Why medallion layering:</b> keeping raw data untouched in Bronze means any transformation bug downstream can be re-run without re-ingesting. <b>Why PySpark over plain Python:</b> Databricks-native distributed processing is the standard approach for this kind of transformation at scale, and it was the right technology to actually learn hands-on.',
+      results:'A working, understandable Bronze → Silver → Gold pipeline that mirrors how production lakehouse architectures are structured — built as a learning project, not a production system with real users.',
+      learned:'How ingestion, transformation, and serving genuinely separate as concerns in a cloud data platform — and why that separation makes pipelines easier to debug and extend.'
+    }
+  },
+  {
+    id:'warehouse', flag:false,
+    title:'SQL Data Warehouse & ETL Pipeline',
+    stack:'Python · SQL · Docker',
+    note:null,
+    diagram:[
+      {kind:'source', idx:'01', label:'SOURCE DATA', sub:'raw records', detail:'Raw tabular data feeding the warehouse.'},
+      {kind:'ingest', idx:'02', label:'ETL', sub:'Python', detail:'Python scripts extract, clean, and load records into the warehouse.'},
+      {kind:'transform', idx:'03', label:'STAR SCHEMA', sub:'modeling', detail:'Fact and dimension tables designed for fast, predictable joins.'},
+      {kind:'transform', idx:'04', label:'INDEXING', sub:'optimization', detail:'Indexes added to the highest-traffic query columns.'},
+      {kind:'analytics', idx:'05', label:'ANALYTICS', sub:'queries', detail:'Reporting queries run against the optimized schema.'},
+    ],
+    metrics:[
+      {val:'10,000+', label:'RECORDS MODELED'},
+      {val:'45%', label:'QUERY SPEED GAIN'},
+      {val:'8.0s → 4.4s', label:'QUERY TIME'},
+      {val:'70%', label:'FASTER ENV. SETUP'},
+    ],
+    tabs:{
+      problem:'A flat, unindexed set of records is slow to query and hard to reason about. This project builds a proper warehouse around 10,000+ records to make analytical queries fast and repeatable.',
+      architecture:'A star-schema warehouse in SQL Server: a central fact table surrounded by dimension tables, loaded through a Python ETL script and containerized with Docker for consistent environments.',
+      decisions:'<b>Why star schema:</b> it keeps joins shallow and queries predictable, which matters more than normalization purity for an analytics-facing warehouse. <b>Why Docker:</b> containerizing the pipeline removed "works on my machine" setup friction.',
+      results:'Query time dropped from 8.0s to 4.4s (a 45% improvement) after indexing, and environment setup time dropped 70% after containerization — both measured, not estimated.',
+      learned:'How schema design and indexing decisions directly translate into measurable query performance — and why environment consistency is itself an engineering problem worth solving.'
+    }
+  },
+  {
+    id:'hermes', flag:false,
+    title:'Hermes — Building My Own Orchestration Engine',
+    stack:'Python · Scheduling · Personal Project',
+    note:'Personal / learning project — built to understand orchestration, not a production tool.',
+    diagram:[
+      {kind:'ingest', idx:'01', label:'SCHEDULER', sub:'trigger', detail:'Decides when a job should run based on defined timing rules.'},
+      {kind:'transform', idx:'02', label:'DEPENDENCY GRAPH', sub:'ordering', detail:'Tracks which tasks must finish before others can start.'},
+      {kind:'transform', idx:'03', label:'TASK EXECUTION', sub:'run', detail:'Runs each ETL task in the correct order once dependencies clear.'},
+      {kind:'store', idx:'04', label:'LOGGING', sub:'audit trail', detail:'Records what ran, when, and whether it succeeded.'},
+      {kind:'analytics', idx:'05', label:'MONITORING', sub:'status', detail:'Surfaces job status so failures are visible, not silent.'},
+    ],
+    tabs:{
+      problem:'Tools like Airflow are complex to learn by reading alone. Building a small version of one — scheduling, dependencies, logging — was a faster way to actually understand how orchestration engines work.',
+      architecture:'A Python-based job scheduler with a dependency graph, sequential task execution, logging, and basic run monitoring.',
+      decisions:'<b>Why build instead of just use Airflow:</b> using a mature orchestrator hides the mechanics. Building a minimal version forces understanding of dependency resolution and failure handling from first principles.',
+      results:'A working scheduler that runs ETL tasks in dependency order with logging — intentionally scoped as a learning tool, not a replacement for production-grade orchestration.',
+      learned:'The core mechanics behind tools like Airflow: DAGs, dependency resolution, execution ordering, and why observability (logging/monitoring) is inseparable from orchestration.'
+    }
+  }
+];
+
+/* ============================= RENDER: HERO PIPELINE ============================= */
+function renderPipeline(container, detailEl, nodes){
+  container.innerHTML = nodes.map((n,i)=>`
+    <div class="pnode" data-kind="${n.kind}" data-i="${i}" tabindex="0" role="button" aria-label="${n.label}">
+      <div class="pn-idx">${n.idx}</div>
+      <div class="pn-label">${n.label}</div>
+      <div class="pn-sub">${n.sub}</div>
+      <div class="pn-bar"></div>
+    </div>
+  `).join('');
+  const activate = (i)=>{
+    container.querySelectorAll('.pnode').forEach(el=>el.classList.remove('active'));
+    const el = container.querySelector('.pnode[data-i="'+i+'"]');
+    el.classList.add('active');
+    detailEl.innerHTML = '<b>'+nodes[i].label+'</b>'+nodes[i].detail;
+  };
+  container.querySelectorAll('.pnode').forEach(el=>{
+    el.addEventListener('click', ()=>activate(el.dataset.i));
+    el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(el.dataset.i);} });
+  });
+  activate(0);
+}
+renderPipeline(document.getElementById('heroPipeline'), document.getElementById('heroPipelineDetail'), HERO_PIPELINE);
+
+/* ============================= RENDER: STACK LAB ============================= */
+const stackGroupsEl = document.getElementById('stackGroups');
+const stackPanelEl = document.getElementById('stackPanel');
+let flatStack = {};
+stackGroupsEl.innerHTML = STACK.map(g=>`
+  <div class="stack-group">
+    <h4>${g.group}</h4>
+    <div class="chip-row">
+      ${g.items.map(it=>{
+        flatStack[it.id]=it;
+        return `<button class="chip ${it.tier==='Exploring'?'exploring':''}" data-id="${it.id}">${it.label}</button>`;
+      }).join('')}
+    </div>
+  </div>
+`).join('');
+
+function showStack(id){
+  const it = flatStack[id];
+  stackGroupsEl.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active', c.dataset.id===id));
+  stackPanelEl.innerHTML = `
+    <div class="sp-title">${it.label}</div>
+    <div class="sp-tier">${it.tier}</div>
+    <div class="sp-body">${it.body}</div>
+    <div class="sp-evidence">
+      <span>WHERE IT SHOWS UP</span>
+      <ul>${it.evidence.map(e=>'<li>'+e+'</li>').join('')}</ul>
+    </div>
+  `;
+}
+stackGroupsEl.querySelectorAll('.chip').forEach(c=>c.addEventListener('click', ()=>showStack(c.dataset.id)));
+
+/* ============================= RENDER: LOG ============================= */
+const logListEl = document.getElementById('logList');
+logListEl.innerHTML = LOG.map((l,i)=>`
+  <div class="log-entry" data-i="${i}">
+    <div class="log-head" role="button" tabindex="0" aria-expanded="false">
+      <div class="log-id mono">LOG/${l.id}</div>
+      <div class="log-titles">
+        <div class="log-role">${l.role}</div>
+        <div class="log-org">${l.org}</div>
+      </div>
+      <div class="log-meta">
+        <div class="log-time">${l.time}</div>
+      </div>
+      <div class="log-chevron">+</div>
+    </div>
+    <div class="log-body">
+      <div class="log-body-inner">
+        <div class="log-stack">${l.stack}</div>
+        <ul>${l.bullets.map(b=>'<li>'+b+'</li>').join('')}</ul>
+      </div>
+    </div>
+  </div>
+`).join('');
+logListEl.querySelectorAll('.log-entry').forEach(entry=>{
+  const head = entry.querySelector('.log-head');
+  const toggle = ()=>{
+    entry.classList.toggle('open');
+    head.setAttribute('aria-expanded', entry.classList.contains('open'));
+  };
+  head.addEventListener('click', toggle);
+  head.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();} });
+});
+// open first entry by default
+logListEl.querySelector('.log-entry').classList.add('open');
+
+/* ============================= RENDER: PROJECTS ============================= */
+const projectsListEl = document.getElementById('projectsList');
+projectsListEl.innerHTML = PROJECTS.map((p,pi)=>`
+  <div class="project-case reveal" data-pi="${pi}">
+    <div class="pc-head">
+      <div class="pc-eyebrow">
+        <span class="eyebrow" style="margin-bottom:0"><span class="tag">${p.flag?'FLAGSHIP':'CASE '+(pi+1)}</span>PROJECT</span>
+      </div>
+      <div class="pc-title">${p.title}</div>
+      <div class="pc-stack">${p.stack}</div>
+      ${p.note?`<div class="pc-note">// ${p.note}</div>`:''}
+    </div>
+    <div class="pc-diagram">
+      <div class="pipeline" data-diagram="${pi}"></div>
+      <div class="pipeline-detail" data-detail="${pi}">Click a stage →</div>
+      ${p.metrics?`<div class="pc-metrics">${p.metrics.map(m=>`<div class="pc-metric"><div class="m-val">${m.val}</div><div class="m-label">${m.label}</div></div>`).join('')}</div>`:''}
+    </div>
+    <div class="pc-tabs" data-tabs="${pi}">
+      ${['problem','architecture','decisions','results','learned'].map((t,ti)=>`<button class="pc-tab ${ti===0?'active':''}" data-tab="${t}">${t}</button>`).join('')}
+    </div>
+    <div class="pc-tab-panels" data-panels="${pi}">
+      ${Object.entries(p.tabs).map(([k,v],ti)=>`<div class="pc-tab-panel ${ti===0?'active':''}" data-panel="${k}">${v}</div>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+PROJECTS.forEach((p,pi)=>{
+  const dEl = document.querySelector('.pipeline[data-diagram="'+pi+'"]');
+  const detEl = document.querySelector('.pipeline-detail[data-detail="'+pi+'"]');
+  renderPipeline(dEl, detEl, p.diagram);
+  const tabsWrap = document.querySelector('.pc-tabs[data-tabs="'+pi+'"]');
+  const panelsWrap = document.querySelector('.pc-tab-panels[data-panels="'+pi+'"]');
+  tabsWrap.querySelectorAll('.pc-tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabsWrap.querySelectorAll('.pc-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      panelsWrap.querySelectorAll('.pc-tab-panel').forEach(p2=>p2.classList.remove('active'));
+      panelsWrap.querySelector('.pc-tab-panel[data-panel="'+tab.dataset.tab+'"]').classList.add('active');
+    });
+  });
+});
+
+/* ============================= SCROLL REVEAL ============================= */
+const revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window && !reduceMotion){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+} else {
+  revealEls.forEach(el=>el.classList.add('in'));
+}
+
+/* ============================= RAIL ACTIVE STATE + PROGRESS ============================= */
+const sections = ['hero','system','stack','log','projects','recruiter','connect'].map(id=>document.getElementById(id));
+const railItems = document.querySelectorAll('.rail-item');
+const mobileItems = document.querySelectorAll('.mobile-nav a');
+const railProgress = document.getElementById('railProgress');
+
+function onScroll(){
+  const y = window.scrollY + window.innerHeight*0.35;
+  let activeIdx = 0;
+  sections.forEach((s,i)=>{ if(s.offsetTop <= y) activeIdx = i; });
+  railItems.forEach(a=>a.classList.toggle('active', a.dataset.target===sections[activeIdx].id));
+  mobileItems.forEach(a=>a.classList.toggle('active', a.dataset.target===sections[activeIdx].id));
+  const pct = ((activeIdx)/(sections.length-1))*100;
+  railProgress.style.height = pct+'%';
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ============================= RECRUITER MODAL ============================= */
+const recruiterModal = document.getElementById('recruiterModal');
+function openRecruiterModal(){
+  recruiterModal.classList.add('open');
+  document.getElementById('closeRecruiter').focus();
+}
+function closeRecruiterModal(){ recruiterModal.classList.remove('open'); }
+document.getElementById('openRecruiter').addEventListener('click', openRecruiterModal);
+document.getElementById('closeRecruiter').addEventListener('click', closeRecruiterModal);
+recruiterModal.addEventListener('click', (e)=>{ if(e.target===recruiterModal) closeRecruiterModal(); });
+
+/* ============================= TERMINAL EASTER EGG ============================= */
+const termOverlay = document.getElementById('termOverlay');
+const termBody = document.getElementById('termBody');
+const termInput = document.getElementById('termInput');
+const termOpenBtn = document.getElementById('termOpenBtn');
+
+const TERM_LINES_INTRO = [
+  '> whoami',
+  'Yash Agarwal — Entry-Level Data Engineer',
+  '',
+  'type "help" for available commands'
+];
+function termPrint(text){
+  const p = document.createElement('p');
+  p.textContent = text;
+  termBody.appendChild(p);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+function termReset(){
+  termBody.innerHTML = '';
+  TERM_LINES_INTRO.forEach(termPrint);
+}
+const TERM_COMMANDS = {
+  help: ()=>['available: whoami, stack, projects, status, resume, contact, clear'],
+  whoami: ()=>['Yash Agarwal — Entry-Level Data Engineer, Jaipur, India'],
+  stack: ()=>['Python, SQL, PySpark, Azure (ADF/Databricks/Synapse), AWS, Docker, Git'],
+  projects: ()=>['cloud-lakehouse','sql-warehouse','hermes'],
+  status: ()=>['OPEN TO DATA ENGINEERING OPPORTUNITIES'],
+  resume: ()=>{ window.open('resume.pdf','_blank'); return ['opening resume.pdf...']; },
+  contact: ()=>['yashagarwala2709@gmail.com','linkedin.com/in/yashagarwal-ai','github.com/yashagarwal16'],
+  clear: ()=>{ termReset(); return []; },
+};
+function openTerm(){
+  termOverlay.classList.add('open');
+  termReset();
+  setTimeout(()=>termInput.focus(), 50);
+}
+function closeTerm(){ termOverlay.classList.remove('open'); }
+termOpenBtn.addEventListener('click', openTerm);
+termOverlay.addEventListener('click', (e)=>{ if(e.target===termOverlay) closeTerm(); });
+termInput.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter'){
+    const val = termInput.value.trim();
+    if(val){
+      termPrint('$ '+val);
+      const cmd = TERM_COMMANDS[val.toLowerCase()];
+      if(cmd){ cmd().forEach(termPrint); }
+      else { termPrint('command not found: '+val+' (try "help")'); }
+    }
+    termInput.value='';
+  }
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='`' && !termOverlay.classList.contains('open') && document.activeElement.tagName!=='INPUT'){
+    e.preventDefault(); openTerm();
+  } else if(e.key==='Escape'){
+    if(termOverlay.classList.contains('open')) closeTerm();
+    if(recruiterModal.classList.contains('open')) closeRecruiterModal();
+  }
+});
+
+})();
+</script>
 </body>
 </html>
